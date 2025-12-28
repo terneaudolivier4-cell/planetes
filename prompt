@@ -1,0 +1,67 @@
+Tu es un assistant technique. Crée un projet Python avec :
+
+A) Fonctionnalités de jeu
+1) Vue cockpit FPS : yaw/pitch, accélération/décélération.
+2) Contrôles :
+   - Souris (passive) : déplace la vue, remplace A/D et ↑/↓ (yaw/pitch).
+   - Clic gauche : accélérer ; relâcher = décélérer (freinage doux).
+   - ESPACE : tirer au laser (cadence).
+   - M : tirer un missile guidé (stock limité, affiché dans le HUD).
+   - ESC : ouvrir/fermer un panneau d’infos (pause) listant « drone / fighter / destroyer » et leur puissance de tir.
+3) Ennemis 3D (modèles OBJ) avec tiers :
+   - Drone (enemy1) : dégâts ~10 + 2×Niveau
+   - Fighter (enemy2) : dégâts ~15 + 2×Niveau
+   - Destroyer (enemy3) : dégâts ~22 + 2×Niveau
+   Tirs ennemis à cadence croissante selon le tier/niveau.
+4) Vagues d’ennemis : progression automatique ; bonus de vagues +100×Niveau.
+5) Missiles guidés : homing vers la cible la plus proche, virage progressif (turn_rate).
+6) Bouclier :
+   - Impacts consomment le bouclier ; si bouclier = 0, la prochaine touche est fatale.
+   - Bonus « pickup » après explosion d’ennemis (recharge bouclier).
+   - Visualisation : barre + anneau circulaire autour du réticule (couleur rouge→bleu).
+7) HUD : vie, bouclier, missiles, score, niveau + mini radar (positions relatives XZ).
+8) Arrière plan : planètes procédurales (GLU spheres) pour la profondeur.
+9) Audio : sons pour ambiance spatiale, laser, missile, tir ennemi, explosion, pickup.
+
+B) Rendu & technique
+1) PyOpenGL (pipeline fixe) : GL_LIGHT0, GL_NORMALIZE, GL_DEPTH_TEST, GL_CULL_FACE.
+2) Textures : mipmaps (glGenerateMipmap) + anisotrope si disponible.
+3) Modèles 3D : loader OBJ + MTL minimal (utilise map_Kd), compilation en Display Lists.
+4) Collisions : sphère sphère (rayon modèle calculé à l’import).
+5) Framerate : clamp dt à 0.05 s ; viser 60 FPS avec <50 ennemis.
+
+C) Assets intégrés (placeholders CC0)
+1) Génère 3 modèles OBJ « wedge » simples avec UV + 1 texture PNG (512×512 pour enemy1/2, 1024×1024 pour enemy3).
+2) Génère sons WAV synthétiques (laser/explosion/missile/enemy_fire/pickup + ambiance).
+3) Utilise bg_space_ambient.wav comme musique (compatibilité pygame).
+
+D) Script de fetch d’assets (standard library only : urllib, zipfile)
+ Crée fetch_assets.py qui :
+1) Télécharge un vaisseau Quaternius – Ultimate Spaceships (CC0) depuis GitHub Releases (port Godot) puis dépose le premier OBJ trouvé dans assets/models/enemy1/ (renommé enemy1.obj).
+2) Télécharge Kenney – Space Station Kit (CC0) via OpenGameArt et dépose un OBJ dans assets/models/enemy2/ (renommé enemy2.obj).
+3) Télécharge ambientCG – Night Sky HDRI 8K (CC0) via API v2 (fallback /get?file=NightSkyHDRI001_8K-HDR.zip) et dézippe dans assets/hdr/.
+→ Le script doit imprimer l’URL utilisée, gérer un fallback si l’API échoue, et ne pas dépendre de paquets non standard.
+→ Mentionner en README que ces assets sont CC0 ; pour un enemy3 UHD PBR (Sketchfab, CC BY), préciser qu’il faut créditer l’auteur (non téléchargé par défaut).
+
+E) Contrôles & gameplay (rappels dans README)
+- Souris : yaw/pitch ; clic gauche pour accélérer ; relâcher = décélérer.
+- ESPACE : laser (cadence) ; M : missile (stock limité, réappro +1 par vague, max 8).
+- ESC : panneau d’infos (pause) avec description des tiers.
+- Score : +100 par ennemi détruit au laser ; +250 au missile ; bonus de vague = +100×Niveau.
+
+F) Livrables attendus
+1) Code complet (les 5 .py + fetch_assets.py), README détaillé, requirements.txt.
+2) Une archive nommée space_fps_with_assets_and_fetch.zip (tout le projet).
+3) Dans README : comment lancer `python fetch_assets.py --all`, que les assets intégrés sont CC0, et que tout asset CC BY (ex. Sketchfab) requiert attribution.
+
+
+IMPORTANT
+- N’utilise aucune dépendance réseau hors urllib/zipfile dans fetch_assets.py.
+- Pas d’erreurs si les assets ne sont pas téléchargés.
+- assure toi de la performance de l’affichage
+- fais une vérification de cohérence dans le code et vis-à-vis des versions de bibliothèques utilisées
+- Si ton environnement ne peut pas récupérer certaines URLs, affiche l’URL source pour téléchargement manuel et ne plante pas.
+- Commente le code (FR), spécialement la logique du bouclier, des missiles, des tiers, et du loader OBJ/MTL.
+- Mets la musique d’ambiance en WAV pour compatibilité pygame (pas de MP3).
+- Ajoute un mini guide dans README pour remplacer les placeholders par des assets UHD (Quaternius/Kenney/ambientCG/Sketchfab).
+
