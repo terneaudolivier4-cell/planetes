@@ -1,0 +1,41 @@
+Tu es un assistant technique. Crée un projet Python avec :
+
+A) Fonctionnalités de jeu
+1) Vue cockpit FPS 
+2) Ennemis 3D (modèles OBJ) avec Drone (enemy1), Fighter (enemy2),  Destroyer (enemy3).  Tirs ennemis à cadence croissante selon le tier/niveau. L'IA des énemis les fait venir vers le joueur puis l'éviter, le dépasser et revenir à nouveau. Les enemis avancent la proue en avant
+3) Vagues d’ennemis : définies dans un fichier de configuration (crée le avec 10 niveaux de difficulté croissante ; au premier niveau, les ennemis ne tirent pas). Score : +100 par ennemi détruit au laser ; +250 au missile ; bonus de vague = +100×Niveau.
+4) Laser : tir du joueur simulé avec des laser jaunes. Tir énemis avec des traits rouge. 
+5) Missiles guidés : missile lock sur la cible si elle reste dans le viseur 1seconde (affichage de "Lock" en rouge) puis homing vers cette cible , virage progressif (turn_rate).
+6) Bouclier :
+   - Impacts consomment le bouclier ; si bouclier = 0, la prochaine touche est fatale.
+   - Bonus « pickup » après explosion d’ennemis (recharge bouclier).
+ 7) HUD : 3 pannels
+-  à gauche :  bouclier (icone du vaisseau, ship_icon.png, entourrée d’un halo qui diminue avec le bouclier)
+- au milieu : mini radar (positions relatives XZ)
+- à droite indicateurs :  ennemis restant dans la vague, missiles restant, score, niveau 
+Génère un petit outil permettant de caler ces 3 pannels sur l’image du cockpit
+8) Arrière plan : skybox + planètes pour la profondeur
+9) Audio : sons en wav fournis
+
+B) Assets 
+Les assets sont dans le répertoire assets. Tu trouveras : 
+1)	les modèles 3D des ennemis : enemy_bomber.obj ;enemy_fighter.obj ; enemy_interceptor.obj. les fichiers MTL et  texture sont disponibles dans le meme répertoire
+2)	une image du cockpit : cockpit_overlay.png 
+3)	des son Wav et une musique d’ambiance
+4) des flibbox  et des vfx si tu peux les utiliser 
+
+C) Contrôles & gameplay (rappels dans README)
+- Souris : yaw/pitch ; clic gauche pour accélérer ; relâcher = décélérer.
+- ESPACE : laser (cadence) ; M : missile (stock limité, réappro +1 par vague, max 8).
+- ESC : panneau d’infos (pause) avec description des tiers.
+- pour le debug : K tue tous les ennemis et on passe à la vague suivante
+- dis moi si tu hésites sur l’utilisation des assets (quel fichier correspond à quelle utilisation).
+
+D) Livrables attendus : Code complet + utilitaire de calge des panels par rapport au cockpit, README détaillé
+
+
+IMPORTANT
+- assure toi de la performance de l’affichage
+- fais une vérification de cohérence dans le code et vis-à-vis des versions de bibliothèques utilisées
+- Commente le code en anglais + messages d’erreur en anglais
+- Si tu as des question, pose les moi  
