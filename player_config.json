@@ -1,0 +1,12 @@
+{
+  "crosshair_size": 16,
+  "acceleration": 22.0,
+  "max_speed": 240.0,
+  "drag": 4.0,
+  "brake_drag": 12.0,
+  "health": 100,
+  "parallax": {
+    "x_pixels": 0,
+    "y_pixels": 0
+  }
+}

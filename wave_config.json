@@ -1,0 +1,129 @@
+{
+  "wave_start_enemies_base": 3,
+  "wave_extra_per_wave": 3,
+  "spawn_interval_base": 1.2,
+  "spawn_interval_decrease_per_wave": 0.08,
+  "spawn_interval_min": 0.4,
+  "enemy_can_shoot_wave_threshold": 2,
+  "enemy_fire_rate_base": 0.8,
+  "enemy_fire_rate_increment_per_wave": 0.25,
+  "enemy_bullet_speed_base": 32.0,
+  "enemy_bullet_speed_increment_per_wave": 3.0,
+  "pickup_spawn_probability": 0.7,
+  "enemy_blueprints": [
+    {
+      "name": "fighter",
+      "obj": "assets/enemy_fighter.obj",
+      "scale": 1.8,
+      "radius": 1.2,
+      "maxspeed": 100,
+      "init_speed_pct": 100,
+      "health": 1,
+      "damage": 8
+    },
+    {
+      "name": "interceptor",
+      "obj": "assets/enemy_bomber.obj",
+      "scale": 1.6,
+      "radius": 1.0,
+      "maxspeed": 50,
+      "init_speed_pct": 100,
+      "health": 2,
+      "damage": 12
+    },
+    {
+      "name": "bomber",
+      "obj": "assets/enemy_interceptor.obj",
+      "scale": 2.2,
+      "radius": 2.0,
+      "maxspeed": 10,
+      "init_speed_pct": 100,
+      "health": 5,
+      "damage": 16
+    }
+  ],
+  "enemy_selection_by_wave": {
+    "1": ["fighter"],
+    "2": ["fighter", "interceptor"],
+    "3": ["fighter", "interceptor"],
+    "4": ["fighter", "interceptor", "bomber"],
+    "5": ["fighter", "interceptor", "bomber"],
+    "6": ["interceptor", "fighter", "bomber"],
+    "7": ["interceptor", "fighter", "bomber"],
+    "8": ["interceptor", "bomber", "fighter"],
+    "9": ["interceptor", "bomber"],
+    "10": ["bomber", "interceptor"],
+    "default": ["fighter", "interceptor", "bomber"]
+  },
+  "wave_details": {
+    "1": {
+      "enemies": 3,
+      "spawn_interval": 0.2,
+      "can_shoot": false,
+      "description": "Tutorial - 3 ennemis sans armes"
+    },
+    "2": {
+      "enemies": 6,
+      "spawn_interval": 1.12,
+      "can_shoot": true,
+      "fire_rate": 1.05,
+      "description": "Première vague armée - 6 ennemis"
+    },
+    "3": {
+      "enemies": 9,
+      "spawn_interval": 1.04,
+      "can_shoot": true,
+      "fire_rate": 1.3,
+      "description": "Intensification - 9 ennemis, tir plus rapide"
+    },
+    "4": {
+      "enemies": 12,
+      "spawn_interval": 0.96,
+      "can_shoot": true,
+      "fire_rate": 1.55,
+      "description": "Vague moyenne - 12 ennemis, cadence augmentée"
+    },
+    "5": {
+      "enemies": 15,
+      "spawn_interval": 0.88,
+      "can_shoot": true,
+      "fire_rate": 1.8,
+      "description": "Mi-parcours - 15 ennemis, balles plus rapides"
+    },
+    "6": {
+      "enemies": 18,
+      "spawn_interval": 0.8,
+      "can_shoot": true,
+      "fire_rate": 2.05,
+      "description": "Difficulté élevée - 18 ennemis, spawn rapide"
+    },
+    "7": {
+      "enemies": 21,
+      "spawn_interval": 0.72,
+      "can_shoot": true,
+      "fire_rate": 2.3,
+      "description": "Zone dangereuse - 21 ennemis, tir intensif"
+    },
+    "8": {
+      "enemies": 24,
+      "spawn_interval": 0.64,
+      "can_shoot": true,
+      "fire_rate": 2.55,
+      "description": "Cauchemar - 24 ennemis, balles ultra-rapides"
+    },
+    "9": {
+      "enemies": 27,
+      "spawn_interval": 0.56,
+      "can_shoot": true,
+      "fire_rate": 2.8,
+      "description": "Enfer - 27 ennemis, spawn très rapide"
+    },
+    "10": {
+      "enemies": 30,
+      "spawn_interval": 0.4,
+      "can_shoot": true,
+      "fire_rate": 3.05,
+      "description": "BOSS FINAL - 30 ennemis, cadence maximale"
+    }
+  }
+}

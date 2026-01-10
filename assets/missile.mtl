@@ -1,0 +1,11 @@
+newmtl missile_mat
+Ka 0.2 0.2 0.2
+Kd 1.0 1.0 1.0
+Ks 0.0 0.0 0.0
+d 1.0
+illum 2
+map_Kd PaintedMetal001_2K-JPG_Color.jpg
+map_Bump PaintedMetal001_2K-JPG_NormalDX.jpg
+map_Ka PaintedMetal001_2K-JPG_Roughness.jpg
+map_Pm PaintedMetal001_2K-JPG_Metalness.jpg
+``
